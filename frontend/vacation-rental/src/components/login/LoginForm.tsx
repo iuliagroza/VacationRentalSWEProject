@@ -15,39 +15,36 @@ const LoginForm: React.FC = () => {
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        const handleSubmit = async (e: React.FormEvent) => {
-            e.preventDefault();
 
-            try {
-                const response = await fetch('http://your-backend-url.com/login', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        username,
-                        password,
-                    }),
-                });
+        try {
+            const response = await fetch('http://your-backend-url.com/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    username,
+                    password,
+                }),
+            });
 
-                if (!response.ok) {
-                    throw new Error("Invalid username or password");
-                }
-
-                const user = await response.json();  // Assume your backend returns the user object
-
-                // Navigate to different routes based on the user role
-                if (user.role === 'admin') {
-                    navigate('/admin');
-                } else {
-                    navigate('/');
-                }
-
-            } catch (error) {
-                // Handle errors as needed
-                console.error(error);
+            if (!response.ok) {
+                throw new Error("Invalid username or password");
             }
-        };
+
+            const user = await response.json();  // Assume your backend returns the user object
+
+            // Navigate to different routes based on the user role
+            if (user.role === 'admin') {
+                navigate('/admin');
+            } else {
+                navigate('/');
+            }
+
+        } catch (error) {
+            // Handle errors as needed
+            console.error(error);
+        }
     };
 
     const formStyle: React.CSSProperties = {
