@@ -32,7 +32,7 @@ const LoginForm: React.FC = () => {
                 throw new Error("Invalid username or password");
             }
 
-            const user = await response.json();  // Assume your backend returns the user object
+            const user = await response.json();
 
             // Navigate to different routes based on the user role
             if (user.role === 'admin') {
@@ -42,7 +42,6 @@ const LoginForm: React.FC = () => {
             }
 
         } catch (error) {
-            // Handle errors as needed
             console.error(error);
         }
     };
